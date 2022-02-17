@@ -57,18 +57,18 @@ document.getElementById('save').addEventListener('click', function () {
     const exceedMessage = document.getElementById('exceed');
 
     const remainingBalance = balance - savingAmount;
-
     const remainingInsert = document.getElementById('remaining');
 
-    if (savingAmount > balance) {
-        exceedMessage.style.display = 'block';
-        remainingInsert.innerText = '';
-        savingInsert.innerText = '';
+    if (savingAmount <= balance) {
+        exceedMessage.style.display = 'none';
+        remainingInsert.innerText = remainingBalance;
+        savingInsert.innerText = savingAmount;
+
 
     }
     else {
-        exceedMessage.style.display = 'none';
-        remainingInsert.innerText = remainingBalance;
+        exceedMessage.style.display = 'block';
+        remainingInsert.innerText = '';
         savingInsert.innerText = savingAmount;
     }
     if (isNaN(savingPersent)) {
@@ -78,10 +78,8 @@ document.getElementById('save').addEventListener('click', function () {
         savingInsert.innerText = '';
     }
     else {
-        if (savingPersent > 0 && savingPersent < 100) {
+        if (savingPersent >= 0 && savingPersent <= 100) {
             percentageError.style.display = 'none';
-            remainingInsert.innerText = remainingBalance;
-            savingInsert.innerText = savingAmount;
         }
         else {
             percentageError.style.display = 'block';
