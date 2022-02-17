@@ -9,6 +9,7 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/c4d3f44d66.js" crossorigin="anonymous"></script>
     <title>cost limit</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -47,9 +48,15 @@
                         aria-label="Amount (to the nearest dollar)">
                     <span class="input-group-text">$</span>
                 </div>
+                <!-- ////////Display error message when user enter string input /////////// -->
+                <div class="notify-section">
+                    <p id="notify-fail" class="notify fw-bold">❌Enter Digits of <span class="text-warning">$$$</span>
+                        Then
+                        calculate</p>
 
+                </div>
                 <button id="calculate" class="bg-primary ps-3 pe-3 m-1 rounded text-white">Calculate</button>
-                <div id="warning" class="text-warning"></div>
+
                 <h4 class="fw-bold ">Total Expenses: <span id="total-expenses"></span></h4>
                 <h4 class="fw-bold mb-4">balance: <span id="balance"></span></h4>
 
@@ -60,7 +67,12 @@
                     <span class="input-group-text">%</span>
                 </div>
 
-
+                <div class="notify-section">
+                    <p id="notify-percentage" class="notify fw-bold">❌Enter Percentage <span
+                            class="text-warning">between(0-100)</span>
+                        Then
+                        calculate</p>
+                </div>
                 <span><button id="save" class="bg-primary ps-3 pe-3 rounded text-white">save</button></span>
 
                 <h4 class="fw-bold m-2 mt-4">Saving Amount: <span id="saving"></span></h4>

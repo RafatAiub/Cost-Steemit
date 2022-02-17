@@ -4,38 +4,41 @@
 // }
 function getInput(id) {
     const input = document.getElementById(id).value;
-    if (input != typeof ('number')) {
-        alert("please enter digits only");
-    }
-
-    const digits = parseInt(input);
-
-
+    const digits = parseFloat(input);
     return digits;
 }
 
 // -------calculate button ----------
 document.getElementById('calculate').addEventListener('click', function () {
     // refreshPage();
+    const income = getInput('income');
     const foodCost = getInput('food-cost');
     const rentCost = getInput('rent-cost');
     const clothCost = getInput('cloth-cost');
-    if (typeof (foodCost) != 'number' && typeof (rentCost) != 'number' && typeof (clothCost) != 'number') {
-        const show = document.getElementById('warning').innerHTML;
-        show.innerText = "please enter digits only before calculate";
-    } else {
-        const totalExpenses = foodCost + rentCost + clothCost;
-        const insert = document.getElementById('total-expenses');
-        insert.innerText = totalExpenses;
+    const failError = document.getElementById('notify-fail');
+    const totalExpenses = foodCost + rentCost + clothCost;
+    const insert = document.getElementById('total-expenses');
 
-        const balance = income - totalExpenses;
-        const balanceInsert = document.getElementById('balance');
+    const balance = income - totalExpenses;
+    const balanceInsert = document.getElementById('balance');
+
+
+    if (isNaN(income) || isNaN(foodCost) || isNaN(rentCost) || isNaN(clothCost)) {
+        insert.innerText = '';
+        balanceInsert.innerText = '';
+        failError.style.display = 'block';
+    } else {
+        insert.innerText = totalExpenses;
         balanceInsert.innerText = balance;
+        failError.style.display = 'none';
     }
+
+
+
 
 });
 
-// ----------------save button --------------------
+// ----------------save button --------------------//
 document.getElementById('save').addEventListener('click', function () {
     // refreshPage();
     const income = getInput('income');
@@ -46,12 +49,32 @@ document.getElementById('save').addEventListener('click', function () {
     const savingPersent = getInput('percentage');
     const savingAmount = income * (savingPersent / 100);
     const savingInsert = document.getElementById('saving');
-    savingInsert.innerText = savingAmount;
+    const percentageError = document.getElementById('notify-percentage');
+
 
     const remainingBalance = balance - savingAmount;
 
     const remainingInsert = document.getElementById('remaining');
-    remainingInsert.innerText = remainingBalance;
+
+    if (isNaN(savingPersent)) {
+
+        percentageError.style.display = 'block';
+        remainingInsert.innerText = '';
+        savingInsert.innerText = '';
+    }
+    else {
+        if (savingPersent > 0 && savingPersent < 100) {
+            percentageError.style.display = 'none';
+            remainingInsert.innerText = remainingBalance;
+            savingInsert.innerText = savingAmount;
+        }
+        else {
+            percentageError.style.display = 'block';
+            remainingInsert.innerText = '';
+            savingInsert.innerText = '';
+        }
+
+    }
 
 
 });
