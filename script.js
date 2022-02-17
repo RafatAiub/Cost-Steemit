@@ -14,28 +14,23 @@ function getInput(id) {
     return digits;
 }
 
-
-const income = getInput('income');
-const foodCost = getInput('food-cost');
-const rentCost = getInput('rent-cost');
-const clothCost = getInput('cloth-cost');
-
-
-
 // -------calculate button ----------
 document.getElementById('calculate').addEventListener('click', function () {
     // refreshPage();
-    const totalExpenses = foodCost + rentCost + clothCost;
-    const insert = document.getElementById('total-expenses');
-    insert.innerText = totalExpenses;
-
-    const balance = income - totalExpenses;
-    const balanceInsert = document.getElementById('balance');
-    balanceInsert.innerText = balance;
-
+    const foodCost = getInput('food-cost');
+    const rentCost = getInput('rent-cost');
+    const clothCost = getInput('cloth-cost');
     if (typeof (foodCost) != 'number' && typeof (rentCost) != 'number' && typeof (clothCost) != 'number') {
-        const show = document.getElementById('warning');
+        const show = document.getElementById('warning').innerHTML;
         show.innerText = "please enter digits only before calculate";
+    } else {
+        const totalExpenses = foodCost + rentCost + clothCost;
+        const insert = document.getElementById('total-expenses');
+        insert.innerText = totalExpenses;
+
+        const balance = income - totalExpenses;
+        const balanceInsert = document.getElementById('balance');
+        balanceInsert.innerText = balance;
     }
 
 });
@@ -43,6 +38,10 @@ document.getElementById('calculate').addEventListener('click', function () {
 // ----------------save button --------------------
 document.getElementById('save').addEventListener('click', function () {
     // refreshPage();
+    const income = getInput('income');
+    const foodCost = getInput('food-cost');
+    const rentCost = getInput('rent-cost');
+    const clothCost = getInput('cloth-cost');
     const balance = income - (foodCost + rentCost + clothCost);
     const savingPersent = getInput('percentage');
     const savingAmount = income * (savingPersent / 100);
