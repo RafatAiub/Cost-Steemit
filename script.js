@@ -59,12 +59,10 @@ document.getElementById('save').addEventListener('click', function () {
     const remainingBalance = balance - savingAmount;
     const remainingInsert = document.getElementById('remaining');
 
-    if (savingAmount <= balance) {
+    if (savingAmount <= balance || isNaN(savingPersent)) {
         exceedMessage.style.display = 'none';
         remainingInsert.innerText = remainingBalance;
         savingInsert.innerText = savingAmount;
-
-
     }
     else {
         exceedMessage.style.display = 'block';
